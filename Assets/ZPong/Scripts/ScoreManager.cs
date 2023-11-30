@@ -20,9 +20,6 @@ namespace ZPong
         public GameObject victoryUI;
         public TMP_Text victoryText;
 
-       public Animator leftScoreTextANI;
-       public Animator rightScoreTextANI;
-
         private void Awake()
         {
             // If there is an instance, and it's not me, delete myself.
@@ -46,10 +43,7 @@ namespace ZPong
         public void ScorePointPlayer1()
         {
             scorePlayer1++;
-            leftScoreText.text = "" + scorePlayer1.ToString();
-            leftScoreTextANI.SetTrigger("ScorePulser");
-
-            Debug.Log("Animation is playing : " + leftScoreTextANI);
+            leftScoreText.text = "" + scorePlayer1;
 
             Debug.Log("Player 1 scored! Current score: " + scorePlayer1);
 
@@ -60,8 +54,7 @@ namespace ZPong
         public void ScorePointPlayer2()
         {
             scorePlayer2++;
-            rightScoreText.text = "" + scorePlayer2.ToString();
-            rightScoreTextANI.SetTrigger("ScorePulser");
+            rightScoreText.text = "" + scorePlayer2;
 
             Debug.Log("Player 2 scored! Current score: " + scorePlayer2);
 
