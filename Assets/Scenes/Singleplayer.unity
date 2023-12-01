@@ -499,6 +499,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 354939298}
   m_CullTransparentMesh: 1
+--- !u!1 &384350170 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3944913817348981301, guid: 72ee9d7406810c14386966108a14c6bd, type: 3}
+  m_PrefabInstance: {fileID: 3944913816877611363}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &394915195
 GameObject:
   m_ObjectHideFlags: 0
@@ -795,8 +800,6 @@ MonoBehaviour:
   rightScoreText: {fileID: 1723675416}
   victoryUI: {fileID: 498974061}
   victoryText: {fileID: 1602497550}
-  leftScoreTextANI: {fileID: 0}
-  rightScoreTextANI: {fileID: 0}
 --- !u!1 &561484957
 GameObject:
   m_ObjectHideFlags: 0
@@ -2126,6 +2129,42 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 3944913817348981300, guid: 72ee9d7406810c14386966108a14c6bd, type: 3}
   m_PrefabInstance: {fileID: 3944913816877611363}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &1679358814
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 384350170}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 04be0e501d6d146aba4efc3590ee2ffd, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!111 &1679358815
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 384350170}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: ee1ce471fa24d4a7f98cfe7178e00bbf, type: 2}
+  m_Animations: []
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1 &1723675414
 GameObject:
   m_ObjectHideFlags: 0
@@ -2392,8 +2431,6 @@ MonoBehaviour:
   rightScoreText: {fileID: 1723675416}
   victoryUI: {fileID: 498974061}
   victoryText: {fileID: 1602497550}
-  leftScoreTextANI: {fileID: 1521815781}
-  rightScoreTextANI: {fileID: 1723675421}
 --- !u!4 &2128109787
 Transform:
   m_ObjectHideFlags: 0

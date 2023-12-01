@@ -3,7 +3,11 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Paddle
+  - Goal
+  - Ball
+  - PADDLE
   layers:
   - Default
   - TransparentFX

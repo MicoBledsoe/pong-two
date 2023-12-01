@@ -18,6 +18,7 @@ namespace ZPong
         private bool ballActive;
 
         protected RectTransform rectTransform;
+        protected Rigidbody2D rb;
 
         private AudioSource bounceSFX;
 
@@ -25,6 +26,7 @@ namespace ZPong
         private void Start()
         {
             rectTransform = GetComponent<RectTransform>();
+            rb = GetComponent<Rigidbody2D>();
 
             if (PlayerPrefs.HasKey("BallSpeed"))
             {
@@ -87,6 +89,14 @@ namespace ZPong
                     direction.y *= -1f;
                     PlayBounceSound();
                 }
+            }
+        }
+
+        private void FixedUpdate()
+        {
+            if(ballActive) //checking if seahorse is active before applying the movement
+            {
+                rb.velocity = direction * speed; //setting the sehaorse velocity based on the the direction times by the speed
             }
         }
 
@@ -158,6 +168,5 @@ namespace ZPong
         {
             ballActive = false;
         }
-
     }
 }
