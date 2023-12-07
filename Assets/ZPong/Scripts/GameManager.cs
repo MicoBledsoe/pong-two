@@ -1,6 +1,6 @@
 using System.Collections;
 using UnityEngine;
-
+//^My directives
 namespace ZPong
 {
 
@@ -11,6 +11,7 @@ namespace ZPong
         [SerializeField] private GameObject canvasParent;
 
         public Ball activeBall;
+        [SerializeField] private GameObject Ball2;
 
         public static GameManager Instance { get; private set; }
 
@@ -28,6 +29,17 @@ namespace ZPong
             }
 
             goals = new Goal[2];
+        }
+
+        private void Start() 
+        {
+            Reset();
+            StartCoroutine(SpawnSecondBallAfterDelay(10)); // 10 seconds delay
+        }
+
+        private IEnumerator SpawnSecondBallAfterDelay(float delay) 
+        {
+            yield return new WaitForSeconds(delay); // Wait for the specified delay
         }
 
         void SetGame()
@@ -51,11 +63,6 @@ namespace ZPong
         public void Reset()
         {
             StartCoroutine(StartTimer());
-        }
-
-        private void Start()
-        {
-            Reset();
         }
 
         IEnumerator StartTimer()

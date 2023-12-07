@@ -2,10 +2,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+//My directives
 namespace ZPong
 {
-
     public enum AILevel
     {
         Easy = 0,
@@ -22,8 +21,11 @@ namespace ZPong
         private Ball ball;
 
         private Paddle thisPaddle;
-
         private bool letsPlay;
+
+        private float speedIncrement = 5f; // Incremental speed increase for better in game player for the Cloud AI Player by +5
+        private float speedIncreaseInterval = 10f; // Interval in seconds for speed increase over the amount of time to make it get more challenging
+        private float timer; // Timer for tracking the interval
 
         private void Start()
         {
@@ -39,25 +41,38 @@ namespace ZPong
             StartCoroutine(StartDelay());
         }
 
+        private void Update()
+        {
+            // Update the timer
+            timer += Time.deltaTime;
+            if (timer >= speedIncreaseInterval)
+            {
+                speed += speedIncrement; // Increase AI Cloud by Increments
+                Debug.Log("AI Cloud Speed Increased to: " + speed); // Log the speed increase so i can see the stamps for duration to suit to game
+                timer = 0; // Reset the timer
+            }
+        }
+
+
         private void FixedUpdate()
         {
             if (letsPlay)
             {
-                if (difficulty == AILevel.Easy)
+                float speedFactor = 1f;
+                if(difficulty == AILevel.Easy)
                 {
-                    thisPaddle.Move(Math.Sign(ball.transform.position.y - transform.position.y) * speed *
-                                    Time.fixedDeltaTime);
+                    speedFactor = 1f; 
                 }
-                else if (difficulty == AILevel.Medium)
+                if (difficulty == AILevel.Medium)
                 {
-                    thisPaddle.Move(Math.Sign(ball.transform.position.y - transform.position.y) * speed *
-                                    Time.fixedDeltaTime * 1.2f);
+                    speedFactor = 1.2f;
                 }
-                else
+                else if (difficulty == AILevel.Hard)
                 {
-                    thisPaddle.Move(Math.Sign(ball.transform.position.y - transform.position.y) * speed *
-                                    Time.fixedDeltaTime * 1.5f);
+                    speedFactor = 1.5f;
                 }
+
+                thisPaddle.Move(Math.Sign(ball.transform.position.y - transform.position.y) * speed * speedFactor * Time.fixedDeltaTime);
             }
         }
 
@@ -67,9 +82,7 @@ namespace ZPong
             letsPlay = false;
 
             var playerParent = transform.parent;
-
             halfPlayerHeight = transform.localScale.y / 2f;
-
             thisPaddle = playerParent.GetComponent<Paddle>();
 
             // Disabling the Player script if present
@@ -78,10 +91,10 @@ namespace ZPong
             {
                 playerScript.enabled = false;
             }
-            
+
             //Delay start
             yield return new WaitForSeconds(3f);
-            
+
             //Enable AI to react
             ball = GameManager.Instance.activeBall;
             letsPlay = true;

@@ -2,7 +2,7 @@ using System;
 using System.ComponentModel.Design.Serialization;
 using TMPro;
 using UnityEngine;
-
+//^My directives
 namespace ZPong
 {
 
@@ -19,6 +19,9 @@ namespace ZPong
         public TMP_Text rightScoreText;
         public GameObject victoryUI;
         public TMP_Text victoryText;
+
+        public Paddle player1Paddle; // Reference to Player 1 aka da Cloud paddle
+        public Paddle player2Paddle; // Reference to Player 2 aka da Cloud paddle
 
         private void Awake()
         {
@@ -45,6 +48,12 @@ namespace ZPong
             scorePlayer1++;
             leftScoreText.text = "" + scorePlayer1;
 
+            //  Checking if score is 3 so it will trigger Cloud size boost
+            if (scorePlayer1 == 3 && player1Paddle != null) //if this score is reach then 
+            {
+                player1Paddle.ActivateCloudSizeBoost(1.5f, 10f); // makes the Cloud bigger for 10 seconds to give it an upper advantage
+            }
+
             Debug.Log("Player 1 scored! Current score: " + scorePlayer1);
 
             PostScore();
@@ -56,6 +65,11 @@ namespace ZPong
             scorePlayer2++;
             rightScoreText.text = "" + scorePlayer2;
 
+            // Checking if score is 3 so it will trigger Cloud size boost
+            if (scorePlayer2 == 3 && player2Paddle != null) //if this score is reach then
+            {
+                player2Paddle.ActivateCloudSizeBoost(1.5f, 10f); // makes the Cloud bigger for 10 seconds to give it an upper advantage
+            }
             Debug.Log("Player 2 scored! Current score: " + scorePlayer2);
 
             PostScore();
